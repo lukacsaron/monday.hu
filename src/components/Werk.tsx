@@ -1,10 +1,30 @@
+'use client';
+
+import { useState, type MouseEvent } from 'react';
 import { Placeholder } from './Placeholder';
 import { PlayIcon } from './PlayIcon';
 import { FlippedW } from './FlippedW';
-import { werks } from '@/content/werks';
+import { VideoModal, type ActiveVideo } from './VideoModal';
+import { werks, type Werk } from '@/content/werks';
 import { site } from '@/content/site';
 
 export function WerkSection() {
+  const [active, setActive] = useState<ActiveVideo>(null);
+
+  const open = (w: Werk) => {
+    setActive({
+      youtubeId: w.youtubeId,
+      artist: 'POGÁNY INDULÓ',
+      track: `${w.art} · WERKFILM`,
+      code: w.code,
+    });
+  };
+
+  const handleClick = (w: Werk) => (e: MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    open(w);
+  };
+
   return (
     <section className="sec" id="werk">
       <div className="sec__head">
@@ -19,7 +39,14 @@ export function WerkSection() {
       </div>
       <div className="werk">
         {werks.map((w) => (
-          <a href="#" className="tile" key={w.id}>
+          <a
+            href={w.youtubeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={handleClick(w)}
+            className="tile"
+            key={w.id}
+          >
             <Placeholder src={w.image} />
             <div className="tile__meta">
               <div className="v" />
@@ -42,6 +69,7 @@ export function WerkSection() {
           </a>
         </div>
       </div>
+      <VideoModal active={active} onClose={() => setActive(null)} />
     </section>
   );
 }

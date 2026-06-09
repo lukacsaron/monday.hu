@@ -1,9 +1,61 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 
+const SITE_URL = 'https://monday.hu';
+const TITLE = 'MONDAY — Visual Production House · Budapest';
+const DESCRIPTION =
+  'MONDAY is a five-person film crew in Budapest. Music videos, commercials and service-crew productions — from full-scale shoots to fast-moving travel sets.';
+
 export const metadata: Metadata = {
-  title: 'MONDAY · BLOK — Visual House',
-  description: 'MONDAY — visual production house in Budapest. Music videos, commercials, films.',
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: TITLE,
+    template: '%s · MONDAY',
+  },
+  description: DESCRIPTION,
+  applicationName: 'MONDAY',
+  keywords: [
+    'MONDAY',
+    'film crew',
+    'music video',
+    'commercial',
+    'Budapest',
+    'Hungary',
+    'production house',
+    'service crew',
+    'DOP',
+    'director',
+  ],
+  authors: [{ name: 'MONDAY' }],
+  creator: 'MONDAY',
+  publisher: 'MONDAY',
+  alternates: { canonical: '/' },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: SITE_URL,
+    siteName: 'MONDAY',
+    title: TITLE,
+    description: DESCRIPTION,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: TITLE,
+    description: DESCRIPTION,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
+  },
+  category: 'Film & Video Production',
+};
+
+export const viewport: Viewport = {
+  themeColor: '#0a0a0a',
+  colorScheme: 'light',
+  width: 'device-width',
+  initialScale: 1,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

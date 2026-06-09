@@ -10,12 +10,12 @@ export const site = {
   contactEmail: 'hello@monday.hu',
   socials: [
     { label: '✉ HELLO@MONDAY.HU', href: 'mailto:hello@monday.hu' },
-    { label: '◎ INSTAGRAM', href: '#' },
+    { label: '◎ INSTAGRAM', href: 'https://www.instagram.com/monnndayyy/' },
     { label: '♫ TIKTOK', href: '#' },
     { label: '▶ YOUTUBE', href: 'https://www.youtube.com/@mondayforcollective' },
   ],
   footerMeta: ['MONDAY VISUAL HOUSE', 'BUDAPEST · HUNGARY', '© 2026 — ALL RIGHTS LOOP'],
-  footStrip: ['MONDAY © 2026', 'BUDAPEST 47.4979° N', 'BLOK / V1 — BRUTALIST'],
+  footStrip: ['MONDAY © 2026', 'BUDAPEST 47.4979° N', 'HELLO@MONDAY.HU'],
   youtubeUrl: 'https://www.youtube.com/@mondayforcollective',
   youtubeHandle: '@MONDAYFORCOLLECTIVE',
 } as const;

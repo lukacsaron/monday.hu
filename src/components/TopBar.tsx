@@ -1,15 +1,26 @@
+'use client';
+
+import { useState } from 'react';
 import { FlippedW } from './FlippedW';
+import { MondayReveal } from './MondayReveal';
 import { navItems, site } from '@/content/site';
 
 export function TopBar() {
+  const [revealCount, setRevealCount] = useState(0);
+
   return (
-    <div className="topbar">
+    <div
+      className="topbar"
+      onMouseEnter={() => setRevealCount((c) => c + 1)}
+    >
       <div className="tb-track">
         {Array.from({ length: 24 }).map((_, i) => (
           <span key={i}>{site.brand}</span>
         ))}
       </div>
-      <div className="tb-anchor">{site.brand}</div>
+      <div className="tb-anchor" aria-hidden="true">
+        <MondayReveal className="tb-logo" trigger={revealCount} ariaLabel={site.brand} />
+      </div>
       <nav className="tb-nav">
         {navItems.map((n) => (
           <a key={n.label} href={n.href} className={n.variant}>

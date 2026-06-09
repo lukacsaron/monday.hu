@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useId, useRef } from 'react';
 
 const PATHS = [
   // M
@@ -24,9 +24,16 @@ const CFG = {
   goo: 16,
 };
 
-const FILTER_ID = 'monday-liquid';
+type Props = {
+  className?: string;
+  ariaLabel?: string;
+  /** Bumping this triggers the reveal animation to replay. Initial mount always plays. */
+  trigger?: number;
+};
 
-export function MondayReveal({ className, ariaLabel = 'MONDAY' }: { className?: string; ariaLabel?: string }) {
+export function MondayReveal({ className, ariaLabel = 'MONDAY', trigger = 0 }: Props) {
+  const rawId = useId();
+  const filterId = `monday-liquid-${rawId.replace(/:/g, '')}`;
   const svgRef = useRef<SVGSVGElement>(null);
   const dispRef = useRef<SVGFEDisplacementMapElement>(null);
   const gooRef = useRef<SVGFEGaussianBlurElement>(null);
@@ -131,7 +138,7 @@ export function MondayReveal({ className, ariaLabel = 'MONDAY' }: { className?: 
       cancelAnimationFrame(rafId);
       clearTimeout(watchdog);
     };
-  }, []);
+  }, [trigger]);
 
   return (
     <svg
@@ -144,7 +151,7 @@ export function MondayReveal({ className, ariaLabel = 'MONDAY' }: { className?: 
     >
       <defs>
         <filter
-          id={FILTER_ID}
+          id={filterId}
           x="-60%"
           y="-60%"
           width="220%"
@@ -177,7 +184,7 @@ export function MondayReveal({ className, ariaLabel = 'MONDAY' }: { className?: 
           />
         </filter>
       </defs>
-      <g filter={`url(#${FILTER_ID})`} fill="#F6F3E7">
+      <g filter={`url(#${filterId})`} fill="#F6F3E7">
         {PATHS.map((d, i) => (
           <g key={i} className="ltr" style={{ opacity: 0 }}>
             <path d={d} />
