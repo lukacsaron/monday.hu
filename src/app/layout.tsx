@@ -1,10 +1,27 @@
 import type { Metadata, Viewport } from 'next';
+import { Archivo, Space_Mono } from 'next/font/google';
 import './globals.css';
 
 const SITE_URL = 'https://monday.hu';
 const TITLE = 'MONDAY — Visual Production House · Budapest';
 const DESCRIPTION =
   'MONDAY is a five-person film crew in Budapest. Music videos, commercials and service-crew productions — from full-scale shoots to fast-moving travel sets.';
+
+// Self-hosted fonts via next/font — kills FOUC and the round-trip to fonts.googleapis,
+// and lets Next inline `font-display: optional` so layout shift is eliminated.
+const archivo = Archivo({
+  subsets: ['latin', 'latin-ext'],
+  weight: ['400', '600', '800', '900'],
+  variable: '--font-archivo',
+  display: 'swap',
+});
+
+const spaceMono = Space_Mono({
+  subsets: ['latin', 'latin-ext'],
+  weight: ['400', '700'],
+  variable: '--font-space-mono',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -58,15 +75,35 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'MONDAY',
+  alternateName: 'MONDAY Visual Production House',
+  url: SITE_URL,
+  logo: `${SITE_URL}/brand/monday-mark.png`,
+  image: `${SITE_URL}/opengraph-image.jpg`,
+  description: DESCRIPTION,
+  email: 'hello@monday.hu',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Budapest',
+    addressCountry: 'HU',
+  },
+  sameAs: [
+    'https://www.instagram.com/monnndayyy/',
+    'https://www.youtube.com/@mondayforcollective',
+  ],
+  knowsAbout: ['Music Videos', 'Commercials', 'Service Crew', 'Film Production'],
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${archivo.variable} ${spaceMono.variable}`}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,600;0,800;0,900;1,800&family=Space+Mono:wght@400;700&display=swap"
-          rel="stylesheet"
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
       </head>
       <body>{children}</body>

@@ -1,12 +1,15 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FlippedW } from './FlippedW';
 import { MondayReveal } from './MondayReveal';
+import { useFocusTrap } from './useFocusTrap';
 import { navItems, site } from '@/content/site';
 
 export function FloatingMenu() {
   const [open, setOpen] = useState(false);
+  const overlayRef = useRef<HTMLDivElement>(null);
+  useFocusTrap(open, overlayRef);
 
   useEffect(() => {
     if (!open) return;
@@ -40,6 +43,7 @@ export function FloatingMenu() {
 
       {open && (
         <div
+          ref={overlayRef}
           className="fm-overlay"
           role="dialog"
           aria-modal="true"

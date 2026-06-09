@@ -15,6 +15,11 @@ function Tile({ w, onPlay }: { w: Work; onPlay: (w: Work) => void }) {
     e.preventDefault();
     onPlay(w);
   };
+  // Map the 12-col grid span to an approximate viewport percentage so next/image
+  // picks the right srcset entry. s4 → 33vw, s5 → 42vw, s7 → 58vw, s12 → 100vw.
+  const spanCols = parseInt(w.span.slice(1), 10);
+  const desktopVw = Math.round((spanCols / 12) * 100);
+  const tileSizes = `(max-width: 768px) 100vw, ${desktopVw}vw`;
   return (
     <a
       href={w.youtubeUrl ?? '#'}
@@ -23,7 +28,7 @@ function Tile({ w, onPlay }: { w: Work; onPlay: (w: Work) => void }) {
       onClick={handleClick}
       className={`tile ${w.span} ${w.height}`}
     >
-      <Placeholder src={w.image} />
+      <Placeholder src={w.image} sizes={tileSizes} />
       <div className="tile__meta">
         <div className="v" />
         <div className="tile__top mono">
@@ -68,7 +73,7 @@ export function WorkSection() {
         <p className="sec__note">{`Every cover is a door.\nClick one to play.`}</p>
       </div>
       <div className="reelstrip">
-        <Placeholder src={reelStripImage} />
+        <Placeholder src={reelStripImage} sizes="100vw" />
         <div className="reelstrip__label">
           <div className="t">SHOWREEL — 20&quot;</div>
           <div className="c mono">OUR STRONGEST CUTS · LOOP</div>

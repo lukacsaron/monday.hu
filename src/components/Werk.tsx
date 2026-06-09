@@ -47,7 +47,7 @@ export function WerkSection() {
             className="tile"
             key={w.id}
           >
-            <Placeholder src={w.image} />
+            <Placeholder src={w.image} sizes="(max-width: 768px) 100vw, 33vw" />
             <div className="tile__meta">
               <div className="v" />
               <div className="tile__top mono">

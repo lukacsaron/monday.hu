@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useFocusTrap } from './useFocusTrap';
 
 export type ActiveVideo = {
   youtubeId: string;
@@ -17,7 +18,11 @@ type Props = {
 const PORTRAIT_MQ = '(orientation: portrait) and (max-width: 768px)';
 
 export function VideoModal({ active, onClose }: Props) {
+  const rootRef = useRef<HTMLDivElement>(null);
   const [isPortraitPhone, setIsPortraitPhone] = useState(false);
+  const [iframeReady, setIframeReady] = useState(false);
+
+  useFocusTrap(!!active, rootRef);
 
   useEffect(() => {
     if (!active) return;
@@ -42,10 +47,17 @@ export function VideoModal({ active, onClose }: Props) {
     return () => mq.removeEventListener('change', onChange);
   }, [active]);
 
+  // Reset loading state whenever the played video changes
+  useEffect(() => {
+    if (!active) return;
+    setIframeReady(false);
+  }, [active?.youtubeId]);
+
   if (!active) return null;
 
   return (
     <div
+      ref={rootRef}
       className="vm"
       onClick={onClose}
       role="dialog"
@@ -86,12 +98,23 @@ export function VideoModal({ active, onClose }: Props) {
           </div>
 
           <div className="vm__frame">
+            {!iframeReady && (
+              <div className="vm__loading mono" aria-hidden="true">
+                <span className="vm__loading-dots">
+                  <b />
+                  <b />
+                  <b />
+                </span>
+                CUEING · {active.code}
+              </div>
+            )}
             <iframe
               key={active.youtubeId}
               src={`https://www.youtube.com/embed/${active.youtubeId}?autoplay=1&rel=0&modestbranding=1&playsinline=1`}
               title={`${active.artist} — ${active.track}`}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
+              onLoad={() => setIframeReady(true)}
             />
           </div>
 
