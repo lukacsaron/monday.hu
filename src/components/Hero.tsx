@@ -1,4 +1,5 @@
 import { Placeholder } from './Placeholder';
+import { MondayReveal } from './MondayReveal';
 import { heroCuts } from '@/content/works';
 import { site } from '@/content/site';
 
@@ -7,7 +8,7 @@ export function Hero() {
     <section className="hero">
       <div className="reel">
         {heroCuts.map((c) => (
-          <div className="frame" key={c.label}>
+          <div className="frame" key={c.image}>
             <Placeholder src={c.image} />
           </div>
         ))}
@@ -22,8 +23,7 @@ export function Hero() {
           </div>
         </div>
         <div className="hero__title">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="bigword" src="/brand/monday.svg" alt={site.brand} />
+          <MondayReveal className="bigword" ariaLabel={site.brand} />
         </div>
         <div className="hero__sub">
           <p>{site.tagline}</p>

@@ -154,10 +154,19 @@ a { color: inherit; text-decoration: none; }
 .hero__top .rec b { width: 9px; height: 9px; border-radius: 50%; background: #fff; animation: blink 1.1s steps(1) infinite; }
 @keyframes blink { 50% { opacity: 0; } }
 .hero__title { line-height: 1; }
-.bigword { display: block; width: 100%; height: auto; }
+.bigword {
+  display: block; width: 100%; height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 10px 30px rgba(0,0,0,.22));
+}
 .bigword text {
   font-family: "Archivo"; font-weight: 900; letter-spacing: -.04em;
   fill: var(--paper); text-transform: uppercase;
+}
+.ltr {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  will-change: transform, opacity;
 }
 .hero__sub {
   display: flex; justify-content: space-between; align-items: flex-end;
@@ -317,7 +326,7 @@ a { color: inherit; text-decoration: none; }
   position: fixed; inset: 0; z-index: 1000;
   background: rgba(8, 8, 8, .96);
   display: flex; align-items: center; justify-content: center;
-  padding: 28px;
+  padding: 20px;
   animation: vm-in .22s ease-out;
   cursor: zoom-out;
 }
@@ -330,9 +339,11 @@ a { color: inherit; text-decoration: none; }
 
 .vm__stage {
   position: relative; cursor: default;
-  width: 100%; max-width: 1280px;
+  width: 100%;
+  /* Cap width so the 16:9 frame + top/bottom chrome (~190px) always fits within the viewport height */
+  max-width: min(1080px, calc((100vh - 190px) * 16 / 9));
   color: var(--paper);
-  display: flex; flex-direction: column; gap: 16px;
+  display: flex; flex-direction: column; gap: 14px;
   animation: vm-stage-in .35s cubic-bezier(.2,.8,.2,1);
 }
 @keyframes vm-stage-in {
@@ -373,7 +384,7 @@ a { color: inherit; text-decoration: none; }
   gap: 18px; flex-wrap: wrap;
 }
 .vm__artist {
-  font-weight: 900; font-size: 56px; line-height: .9;
+  font-weight: 900; font-size: 44px; line-height: .9;
   letter-spacing: -.035em; text-transform: uppercase;
 }
 .vm__track {
