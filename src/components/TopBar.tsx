@@ -1,9 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { FlippedW } from './FlippedW';
 import { MondayReveal } from './MondayReveal';
-import { navItems, site } from '@/content/site';
+import { site } from '@/content/site';
 
 export function TopBar() {
   const [revealCount, setRevealCount] = useState(0);
@@ -21,14 +20,6 @@ export function TopBar() {
       <div className="tb-anchor" aria-hidden="true">
         <MondayReveal className="tb-logo" trigger={revealCount} ariaLabel={site.brand} />
       </div>
-      <nav className="tb-nav">
-        {navItems.map((n) => (
-          <a key={n.label} href={n.href} className={n.variant}>
-            <FlippedW />
-            <span>{n.label.slice(1)}</span>
-          </a>
-        ))}
-      </nav>
     </div>
   );
 }
@@ -43,14 +34,6 @@ export function MobileTop() {
           ))}
         </div>
       </div>
-      <nav className="m-menu">
-        {navItems.map((n) => (
-          <a key={n.label} href={n.href} className={n.variant}>
-            <FlippedW />
-            <span>{n.label.slice(1)}</span>
-          </a>
-        ))}
-      </nav>
     </div>
   );
 }

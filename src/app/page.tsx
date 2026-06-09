@@ -1,4 +1,6 @@
 import { TopBar, MobileTop } from '@/components/TopBar';
+import { FloatingMenu } from '@/components/FloatingMenu';
+import { SvgFilters } from '@/components/SvgFilters';
 import { Hero } from '@/components/Hero';
 import { WorkSection } from '@/components/Work';
 import { WerkSection } from '@/components/Werk';
@@ -10,8 +12,10 @@ import { Foot } from '@/components/Foot';
 export default function Page() {
   return (
     <div className="page">
+      <SvgFilters />
       <TopBar />
       <MobileTop />
+      <FloatingMenu />
       <Hero />
       <WorkSection />
       <WerkSection />
