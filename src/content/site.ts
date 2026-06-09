@@ -3,8 +3,8 @@
 
 export const site = {
   brand: 'MONDAY',
-  tagline: 'We make the picture louder than the sound.',
-  services: ['Music videos', 'Commercials', 'Films'],
+  tagline: "Big sets, small sets, strange sets — we're in.",
+  services: ['Music videos', 'Commercials', 'Service crew'],
   location: 'BUDAPEST · HU',
   recLabel: 'REC · SHOWREEL 2026',
   contactEmail: 'hello@monday.hu',

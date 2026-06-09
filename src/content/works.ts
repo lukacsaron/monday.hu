@@ -2,29 +2,39 @@ export type Work = {
   id: string;
   art: string;
   tracks: string;
-  span: 's7' | 's5' | 's4';
+  span: 's12' | 's8' | 's7' | 's6' | 's5' | 's4' | 's3';
   height: 'h-tall' | 'h-mid' | 'h-sm';
   code: string;
   image: string;
+  youtubeId?: string;
+  youtubeUrl?: string;
 };
 
+const yt = (id: string) => ({
+  youtubeId: id,
+  youtubeUrl: `https://www.youtube.com/watch?v=${id}`,
+  image: `/img/works/${id}.jpg`,
+});
+
 export const works: Work[] = [
-  { id: 'pogany-indulo', art: 'POGÁNY INDULÓ', tracks: '½ · 2/2 · LELKEM NYUGODJ · ÚGY HISZEM', span: 's7', height: 'h-tall', code: 'MV·001', image: '/img/01.png' },
-  { id: 'betonhofi', art: 'BETONHOFI', tracks: 'beton.hof1', span: 's5', height: 'h-tall', code: 'MV·002', image: '/img/02.png' },
-  { id: 'dzsudlo', art: 'DZSUDLÓ', tracks: 'sötét', span: 's5', height: 'h-mid', code: 'MV·003', image: '/img/05.png' },
-  { id: 'anubiss', art: 'ANUBISS', tracks: 'emelem a tetőt', span: 's7', height: 'h-mid', code: 'MV·004', image: '/img/08.png' },
-  { id: 'kocsi-hu', art: 'KOCSI.HU', tracks: 'brand spot', span: 's4', height: 'h-sm', code: 'AD·005', image: '/img/03.png' },
-  { id: 'followtheflow', art: 'FOLLOWTHEFLOW', tracks: 'official video', span: 's4', height: 'h-sm', code: 'MV·006', image: '/img/04.png' },
-  { id: 'more', art: '+ MORE WORK', tracks: 'coming soon', span: 's4', height: 'h-sm', code: '···', image: '/img/07.png' },
+  { id: 'pogany-egy-ketto',   art: 'POGÁNY INDULÓ',   tracks: 'EGY/KETTŐ',                                  span: 's7',  height: 'h-tall', code: 'MV·001', ...yt('SDHQwhNISck') },
+  { id: 'pogany-ketto-ketto', art: 'POGÁNY INDULÓ',   tracks: 'KETTŐ/KETTŐ',                                span: 's5',  height: 'h-tall', code: 'MV·002', ...yt('dRWjo7gUets') },
+  { id: 'pogany-lelkem',      art: 'POGÁNY INDULÓ',   tracks: 'LELKEM, NYUGODJ!',                           span: 's5',  height: 'h-mid',  code: 'MV·003', ...yt('xwXfPg_vEUo') },
+  { id: 'pogany-ugy-hiszem',  art: 'POGÁNY INDULÓ',   tracks: 'ÚGY HISZEM',                                 span: 's7',  height: 'h-mid',  code: 'MV·004', ...yt('1SbBcw84Pkw') },
+  { id: 'betonhofi',          art: 'BETON.HOFI',      tracks: 'BETON.HOF1',                                 span: 's7',  height: 'h-mid',  code: 'MV·005', ...yt('PIi0NCqnLjc') },
+  { id: 'dzsudlo',            art: 'DZSÚDLÓ',         tracks: 'SÖTÉT',                                      span: 's5',  height: 'h-mid',  code: 'MV·006', ...yt('2EHZKyo2teI') },
+  { id: 'anubiis',            art: 'ANUBII$',         tracks: 'EMELEM A TÉTET · w/ BETON.HOFI × CO LEE',    span: 's8',  height: 'h-mid',  code: 'MV·007', ...yt('oXDsYLXIcnI') },
+  { id: 'followtheflow',      art: 'FOLLOW THE FLOW', tracks: 'ÍGY VAGYOK SZABAD',                          span: 's4',  height: 'h-mid',  code: 'MV·008', ...yt('4SUujEG8OwY') },
+  { id: 'more',               art: '+ MORE WORK',     tracks: 'coming soon',                                span: 's12', height: 'h-sm',   code: '···',    image: '/img/07.png' },
 ];
 
 export const heroCuts: { label: string; image: string }[] = [
-  { label: 'POGÁNY INDULÓ', image: '/img/01.png' },
-  { label: 'BETONHOFI', image: '/img/02.png' },
-  { label: 'DZSUDLÓ', image: '/img/05.png' },
-  { label: 'ANUBISS', image: '/img/08.png' },
-  { label: 'KOCSI.HU', image: '/img/03.png' },
-  { label: 'FOLLOWTHEFLOW', image: '/img/04.png' },
+  { label: 'POGÁNY INDULÓ',   image: '/img/works/SDHQwhNISck.jpg' },
+  { label: 'BETON.HOFI',      image: '/img/works/PIi0NCqnLjc.jpg' },
+  { label: 'DZSÚDLÓ',         image: '/img/works/2EHZKyo2teI.jpg' },
+  { label: 'ANUBII$',         image: '/img/works/oXDsYLXIcnI.jpg' },
+  { label: 'FOLLOW THE FLOW', image: '/img/works/4SUujEG8OwY.jpg' },
+  { label: 'POGÁNY INDULÓ',   image: '/img/works/1SbBcw84Pkw.jpg' },
 ];
 
-export const reelStripImage = '/img/08.png';
+export const reelStripImage = '/img/works/SDHQwhNISck.jpg';

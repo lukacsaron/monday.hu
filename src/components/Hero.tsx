@@ -22,11 +22,8 @@ export function Hero() {
           </div>
         </div>
         <div className="hero__title">
-          <svg className="bigword" viewBox="0 0 1440 240" preserveAspectRatio="xMidYMid meet">
-            <text x="0" y="224" fontSize="310" textLength="1430" lengthAdjust="spacingAndGlyphs">
-              {site.brand}
-            </text>
-          </svg>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="bigword" src="/brand/monday.svg" alt={site.brand} />
         </div>
         <div className="hero__sub">
           <p>{site.tagline}</p>

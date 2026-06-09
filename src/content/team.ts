@@ -1,14 +1,55 @@
-export type Member = { id: string; name: string; role: string; bio: string; image: string };
+export type Member = {
+  id: string;
+  name: string;
+  role: string;
+  bio: string;
+  images: string[];
+  link?: string;
+};
 
 export const team: Member[] = [
-  { id: 'm1', name: '[NAME 01]', role: 'DIRECTOR / DOP', bio: 'Still staring at the monitor at 3am. In love with the fog machine.', image: '/img/02.png' },
-  { id: 'm2', name: '[NAME 02]', role: 'PRODUCER', bio: 'Has a plan B through Z. Runs entirely on coffee.', image: '/img/06.png' },
-  { id: 'm3', name: '[NAME 03]', role: 'EDITOR / COLOR', bio: "Recuts a shot 400 times before it's right. Sometimes 401.", image: '/img/04.png' },
-  { id: 'm4', name: '[NAME 04]', role: 'GAFFER', bio: 'If it lights up, they touched it. Lives in cables.', image: '/img/08.png' },
-  { id: 'm5', name: '[NAME 05]', role: '1ST AC / DRONE', bio: 'Everything looks better from the air. Not bad on the ground either.', image: '/img/01.png' },
+  {
+    id: 'buki',
+    name: 'Balázs Büki',
+    role: 'DIRECTOR',
+    bio: 'Always chasing the next big idea. Usually finds it somewhere between a daydream and a shooting schedule. Has collected a suspicious number of music video awards along the way.',
+    images: [],
+    link: 'https://bukibalazs.com/',
+  },
+  {
+    id: 'deak',
+    name: 'Kristóf M. Deák',
+    role: 'DOP',
+    bio: 'Years of experience, countless productions, and a talent for making any set feel like home — from major international shoots to fast-moving indie crews.',
+    images: [],
+    link: 'https://www.kristofmdeak.com/',
+  },
+  {
+    id: 'repassy',
+    name: 'Márton Répássy',
+    role: 'PRODUCER',
+    bio: "Constantly in motion. If he's not solving a production problem, he's probably cooking or looking for the IQOS he was holding a second ago.",
+    images: [],
+  },
+  {
+    id: 'soos',
+    name: 'Géza Soós',
+    role: 'DIRECTOR / DOP / PHOTOGRAPHER',
+    bio: "Collects visual jobs like side quests. If it involves a camera, chances are he's already doing it.",
+    images: [],
+    link: 'https://www.instagram.com/soos.geza/',
+  },
+  {
+    id: 'kozma',
+    name: 'Leó Kozma',
+    role: 'EDITOR / VFX / AI',
+    bio: "Magician. If it wasn't shot, he'll make it appear. If it was shot, he'll make it better.",
+    images: [],
+  },
 ];
 
 export const weAreCopy = {
-  blurb: 'Big productions, tiny travel kits — and everything in between.',
-  note: 'On location or in the studio.\nWhatever the shot needs.',
+  lead: 'A Five-person film crew.',
+  blurb:
+    'Built for anything from full-scale productions to fast-moving travel shoots. We work both as a service crew and on-location team, mostly creating music videos and commercials. We move fast, stay flexible, solve problems before they become problems — and somehow keep the mood good while doing it.',
 };
