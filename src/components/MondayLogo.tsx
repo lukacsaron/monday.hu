@@ -1,13 +1,21 @@
-import { MONDAY_PATHS, MONDAY_VIEWBOX } from './mondayPaths';
+import { MONDAY_OUTLINE_PATHS, MONDAY_PATHS, MONDAY_VIEWBOX } from './mondayPaths';
 
 /**
- * MONDAY wordmark as inline SVG, filled with currentColor. Used in the
- * scrolling marquees in place of the web font. The outline ("hollow") variant
- * is produced by the `#inset-stroke` CSS filter applied to every other logo
- * (see .marquee__track / .tb-track rules), so this component only ever renders
- * the filled glyph — keeping the filled/outline alternation in CSS.
+ * MONDAY wordmark as inline SVG, drawn with currentColor. Used in the scrolling
+ * marquees in place of the web font. The outline ("hollow") variant uses a
+ * separate pre-inset path set so the outer bounds match the filled glyph —
+ * the marquee tracks alternate `fill` and `outline` to produce the hollow/solid
+ * pattern with no runtime SVG filter.
  */
-export function MondayLogo({ className }: { className?: string }) {
+export function MondayLogo({
+  className,
+  variant = 'fill',
+}: {
+  className?: string;
+  variant?: 'fill' | 'outline';
+}) {
+  const isOutline = variant === 'outline';
+  const paths = isOutline ? MONDAY_OUTLINE_PATHS : MONDAY_PATHS;
   return (
     <svg
       className={className}
@@ -16,8 +24,12 @@ export function MondayLogo({ className }: { className?: string }) {
       aria-hidden="true"
       focusable="false"
     >
-      <g fill="currentColor">
-        {MONDAY_PATHS.map((d, i) => (
+      <g
+        fill={isOutline ? 'none' : 'currentColor'}
+        stroke={isOutline ? 'currentColor' : undefined}
+        strokeWidth={isOutline ? 2 : undefined}
+      >
+        {paths.map((d, i) => (
           <path key={i} d={d} />
         ))}
       </g>

@@ -1,6 +1,5 @@
 import { TopBar, MobileTop } from '@/components/TopBar';
 import { FloatingMenu } from '@/components/FloatingMenu';
-import { SvgFilters } from '@/components/SvgFilters';
 import { Hero, type HeroFx } from '@/components/Hero';
 import { WorkSection } from '@/components/Work';
 import { WerkSection } from '@/components/Werk';
@@ -19,7 +18,6 @@ export default async function Page({
   const heroFx = (['blur', 'invert', 'contrast'] as const).find((v) => v === fx) as HeroFx | undefined;
   return (
     <div className="page">
-      <SvgFilters />
       <TopBar />
       <MobileTop />
       <FloatingMenu />

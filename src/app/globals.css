@@ -53,11 +53,6 @@ a { color: inherit; text-decoration: none; }
    paper color. overflow:visible so the glyph's tiny baseline overshoot isn't clipped. */
 .mlogo { display: block; width: auto; overflow: visible; }
 .marquee__track .mlogo { height: 32px; margin-block: 12px; margin-right: 14px; }
-/* True inset stroke via SVG feMorphology — outlined logos share the exact
-   outer bounds of filled logos. See <SvgFilters />. */
-.marquee__track .mlogo:nth-child(even) {
-  filter: url(#inset-stroke);
-}
 @keyframes scroll { to { transform: translate3d(-50%, 0, 0); } }
 
 /* ---------- flipped-M: Monday's M, rotated 180° to read as W; hover rolls full 360° ---------- */
@@ -81,9 +76,6 @@ a { color: inherit; text-decoration: none; }
   backface-visibility: hidden;
 }
 .tb-track .mlogo { height: 34px; margin-right: 16px; }
-.tb-track .mlogo:nth-child(even) {
-  filter: url(#inset-stroke);
-}
 
 /* ---------- hero / showreel ---------- */
 .hero {
@@ -642,9 +634,6 @@ a { color: inherit; text-decoration: none; }
   .fm-nav__item--outline { -webkit-text-stroke-width: 2px; }
   .fm-overlay__foot { flex-direction: column; gap: 6px; font-size: 11px; text-align: center; }
   .fm-overlay__foot > * + *::before { content: none; margin: 0; }
-
-  /* Mobile m-top marquee logo is smaller → thinner inset stroke */
-  .m-top .marquee__track .mlogo:nth-child(even) { filter: url(#inset-stroke-thin); }
 }
 
 /* ---------- FloatingMenu: landscape phone/tablet — split layout, compact nav ---------- */
