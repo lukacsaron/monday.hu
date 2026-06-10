@@ -4,7 +4,7 @@ import { site } from '@/content/site';
 export function WordSection() {
   return (
     <section className="sec word" id="word">
-      <div className="sec__id mono" style={{ marginBottom: 8 }}>04 / CONTACT</div>
+      <div className="sec__id mono" style={{ marginBottom: 8 }}>05 / CONTACT</div>
       <h2 className="word__big">
         <a href={`mailto:${site.contactEmail}`}>
           <FlippedW />

@@ -9,7 +9,7 @@ export function WeAreSection() {
     <section className="sec" id="weare">
       <div className="sec__head">
         <div>
-          <div className="sec__id mono">03 / THE STUDIO</div>
+          <div className="sec__id mono">04 / THE STUDIO</div>
           <h2 className="sec__title">
             <FlippedW />
             E ARE
