@@ -8,3 +8,4 @@ dist/
 *.tsbuildinfo
 design/
 design.tar.gz
+.superpowers/
