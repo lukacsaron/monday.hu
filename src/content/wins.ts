@@ -8,18 +8,19 @@ export type Win = {
   festival: string;
   festivalFull?: string;
   tier?: 'gold' | 'silver';
+  year?: number;
 };
 
 export const wins: Win[] = [
-  { id: 'best-music-video-hmvf', count: 3, title: 'Best Music Video',           festival: 'HMVF', festivalFull: 'Hungarian Music Video Festival' },
-  { id: 'best-director-hmvf',    count: 3, title: 'Best Director',              festival: 'HMVF', festivalFull: 'Hungarian Music Video Festival' },
-  { id: 'best-cine-gold-hmvf',   count: 2, title: 'Best Cinematography',        festival: 'HMVF', festivalFull: 'Hungarian Music Video Festival', tier: 'gold' },
-  { id: 'best-cine-silver-hmvf', count: 2, title: 'Best Cinematography',        festival: 'HMVF', festivalFull: 'Hungarian Music Video Festival', tier: 'silver' },
-  { id: 'best-image-video-hmvf', count: 2, title: 'Best Image Video',           festival: 'HMVF', festivalFull: 'Hungarian Music Video Festival' },
-  { id: 'best-mv-cine-zsigmond', count: 1, title: 'Best MV Cinematography',     festival: 'ZSIGMOND VILMOS FF', festivalFull: 'Zsigmond Vilmos Film Festival' },
-  // TODO(content): confirm full list of international wins
-  { id: 'best-mv-london',        count: 1, title: 'Best Music Video',           festival: 'LONDON' },
-  { id: 'best-mv-kosice',        count: 1, title: 'Best Music Video',           festival: 'KOSICE' },
+  { id: 'best-music-video-hmvf',          count: 3, title: 'Best Music Video',               festival: 'HMVF',              festivalFull: 'Hungarian Music Video Festival' },
+  { id: 'best-director-hmvf',             count: 3, title: 'Best Director',                  festival: 'HMVF',              festivalFull: 'Hungarian Music Video Festival' },
+  { id: 'best-cinematographer-gold-hmvf', count: 2, title: 'Best Cinematographer',           festival: 'HMVF',              festivalFull: 'Hungarian Music Video Festival', tier: 'gold' },
+  { id: 'best-image-video-hmvf',          count: 2, title: 'Best Image Video',               festival: 'HMVF',              festivalFull: 'Hungarian Music Video Festival' },
+  { id: 'best-mv-cine-zsigmond',          count: 1, title: 'Best Music Video Cinematography', festival: 'ZSIGMOND VILMOS FF', festivalFull: 'Zsigmond Vilmos Film Festival' },
+  { id: 'best-mv-europe',                 count: 1, title: 'Best Music Video',               festival: 'EUROPE MV AWARDS',  festivalFull: 'Europe Music Video Awards' },
+  { id: 'berlin-best-narrative-2025',     count: 1, title: 'Best Narrative Nominee',         festival: 'BERLIN MV AWARD',   festivalFull: 'Berlin Music Video Award', year: 2025 },
+  { id: 'berlin-best-director-2026',      count: 1, title: 'Best Director Nominee',          festival: 'BERLIN MV AWARD',   festivalFull: 'Berlin Music Video Award', year: 2026 },
+  { id: 'berlin-best-low-budget-2026',    count: 1, title: 'Best Low Budget',                festival: 'BERLIN MV AWARD',   festivalFull: 'Berlin Music Video Award', year: 2026 },
 ];
 
 export const winsCopy = {

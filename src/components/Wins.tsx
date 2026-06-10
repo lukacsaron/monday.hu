@@ -15,7 +15,7 @@ function Chip({ w }: { w: Win }) {
       <span className="wins__count mono" aria-hidden="true">{w.count}×</span>
       <span className="sr-only">{w.count} wins:</span>
       <span className="wins__title">{w.title}{tierSuffix}</span>
-      <span className="wins__fest mono">· {w.festival}</span>
+      <span className="wins__fest mono">· {w.festival}{w.year ? ` · ${w.year}` : ''}</span>
       <span className="wins__dot" aria-hidden="true" />
     </li>
   );
