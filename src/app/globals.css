@@ -773,7 +773,7 @@ a { color: inherit; text-decoration: none; }
   .wins__strip { padding-block: 8px; }
   .wins__chip { font-size: 30px; gap: 10px; }
   .wins__count { font-size: 18px; }
-  .wins__fest { font-size: 11px; max-width: 18ch; }
+  .wins__fest { font-size: 11px; max-width: 9ch; line-height: 1.2; }
 
   .weare__intro { grid-template-columns: 1fr; gap: 18px; padding: 20px 16px 28px; align-items: start; }
   .weare__lead { font-size: 48px; max-width: none; }
