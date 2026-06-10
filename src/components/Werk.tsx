@@ -3,10 +3,9 @@
 import { useState, type MouseEvent } from 'react';
 import { Placeholder } from './Placeholder';
 import { PlayIcon } from './PlayIcon';
-import { FlippedW } from './FlippedW';
 import { VideoModal, type ActiveVideo } from './VideoModal';
 import { werks, type Werk } from '@/content/werks';
-import { site } from '@/content/site';
+import { FlippedW } from './FlippedW';
 
 export function WerkSection() {
   const [active, setActive] = useState<ActiveVideo>(null);
@@ -14,7 +13,7 @@ export function WerkSection() {
   const open = (w: Werk) => {
     setActive({
       youtubeId: w.youtubeId,
-      artist: 'POGÁNY INDULÓ',
+      artist: w.artist,
       track: `${w.art} · WERKFILM`,
       code: w.code,
     });
@@ -29,13 +28,12 @@ export function WerkSection() {
     <section className="sec" id="werk">
       <div className="sec__head">
         <div>
-          <div className="sec__id mono">02 / BEHIND THE SCENES</div>
+          <div className="sec__id mono">02 / BTS</div>
           <h2 className="sec__title">
-            <FlippedW />
-            ERK
+            <FlippedW />HATS<span className="sec__title-sub">BEHIND</span>
           </h2>
         </div>
-        <p className="sec__note">{`What it looks like\nbehind the camera.`}</p>
+        <p className="sec__note">{`Fast moves, changing plans, good vibes.\nSee how we work in the videos below.`}</p>
       </div>
       <div className="werk">
         {werks.map((w) => (
@@ -62,12 +60,6 @@ export function WerkSection() {
             </div>
           </a>
         ))}
-        <div className="werk__cta">
-          <div className="yt">More werk on YouTube →</div>
-          <a className="btn" href={site.youtubeUrl} target="_blank" rel="noreferrer">
-            {site.youtubeHandle}
-          </a>
-        </div>
       </div>
       <VideoModal active={active} onClose={() => setActive(null)} />
     </section>

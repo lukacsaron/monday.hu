@@ -1,6 +1,7 @@
 export type Werk = {
   id: string;
   art: string;
+  artist: string;
   code: string;
   image: string;
   youtubeId: string;
@@ -14,7 +15,8 @@ const yt = (id: string) => ({
 });
 
 export const werks: Werk[] = [
-  { id: 'werk-egy-ketto',   art: 'EGY/KETTŐ',        code: 'WERK·01', ...yt('pHCASVmHiJw') },
-  { id: 'werk-ketto-ketto', art: 'KETTŐ/KETTŐ',      code: 'WERK·02', ...yt('1XpDbdHbkb0') },
-  { id: 'werk-lelkem',      art: 'LELKEM, NYUGODJ!', code: 'WERK·03', ...yt('lnjBTQtFNmY') },
+  { id: 'werk-emelem',      art: 'EMELEM A TÉTET',  artist: 'ANUBII$ × BETON.HOFI × CO LEE', code: 'WERK·01', ...yt('3KQlp0tTzoI') },
+  { id: 'werk-lelkem',      art: 'LELKEM, NYUGODJ!', artist: 'POGÁNY INDULÓ',                 code: 'WERK·02', ...yt('lnjBTQtFNmY') },
+  { id: 'werk-ketto-ketto', art: 'KETTŐ/KETTŐ',      artist: 'POGÁNY INDULÓ',                 code: 'WERK·03', ...yt('1XpDbdHbkb0') },
+  { id: 'werk-egy-ketto',   art: 'EGY/KETTŐ',        artist: 'POGÁNY INDULÓ',                 code: 'WERK·04', ...yt('pHCASVmHiJw') },
 ];

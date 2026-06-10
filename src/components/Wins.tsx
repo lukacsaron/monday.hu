@@ -21,7 +21,7 @@ function Chip({ w }: { w: Win }) {
       ) : null}
       <span className="sr-only">{srLabel}</span>
       <span className="wins__title">{w.title}{tierSuffix}</span>
-      <span className="wins__fest mono">{w.festival}{w.year ? ` · ${w.year}` : ''}</span>
+      <span className="wins__fest mono">{w.festival}{w.year ? ` ${w.year}` : ''}</span>
     </li>
   );
 }

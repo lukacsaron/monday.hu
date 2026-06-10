@@ -3,9 +3,9 @@ import { Archivo, Space_Mono } from 'next/font/google';
 import './globals.css';
 
 const SITE_URL = 'https://monday.hu';
-const TITLE = 'MONDAY — Visual Production House · Budapest';
+const TITLE = 'MONDAY — Visual Production House';
 const DESCRIPTION =
-  'MONDAY is a five-person film crew in Budapest. Music videos, commercials and service-crew productions — from full-scale shoots to fast-moving travel sets.';
+  'MONDAY is a five-person film crew. Music videos, commercials and service-crew productions — from full-scale shoots to fast-moving travel sets.';
 
 // Self-hosted fonts via next/font — kills FOUC and the round-trip to fonts.googleapis,
 // and lets Next inline `font-display: optional` so layout shift is eliminated.
@@ -36,8 +36,6 @@ export const metadata: Metadata = {
     'film crew',
     'music video',
     'commercial',
-    'Budapest',
-    'Hungary',
     'production house',
     'service crew',
     'DOP',
@@ -85,11 +83,6 @@ const organizationSchema = {
   image: `${SITE_URL}/opengraph-image.jpg`,
   description: DESCRIPTION,
   email: 'hello@monday.hu',
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Budapest',
-    addressCountry: 'HU',
-  },
   sameAs: [
     'https://www.instagram.com/monnndayyy/',
     'https://www.youtube.com/@mondayforcollective',

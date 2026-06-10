@@ -1,6 +1,6 @@
 # monday.hu
 
-Production site for **MONDAY** — a five-person film crew in Budapest. Music videos, commercials, service-crew productions.
+Production site for **MONDAY** — a five-person film crew. Music videos, commercials, service-crew productions.
 
 ## Stack
 - Next.js 15 (App Router) + TypeScript

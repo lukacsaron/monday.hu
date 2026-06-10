@@ -6,7 +6,7 @@ import { PlayIcon } from './PlayIcon';
 import { FlippedW } from './FlippedW';
 import { ArtName } from './ArtName';
 import { VideoModal, type ActiveVideo } from './VideoModal';
-import { works, reelStripImage, type Work } from '@/content/works';
+import { works, type Work } from '@/content/works';
 
 function Tile({ w, onPlay }: { w: Work; onPlay: (w: Work) => void }) {
   const isPlayable = Boolean(w.youtubeId);
@@ -69,14 +69,6 @@ export function WorkSection() {
             <FlippedW />
             ORK
           </h2>
-        </div>
-        <p className="sec__note">{`Every cover is a door.\nClick one to play.`}</p>
-      </div>
-      <div className="reelstrip">
-        <Placeholder src={reelStripImage} sizes="100vw" />
-        <div className="reelstrip__label">
-          <div className="t">SHOWREEL — 20&quot;</div>
-          <div className="c mono">OUR STRONGEST CUTS · LOOP</div>
         </div>
       </div>
       <div className="work">

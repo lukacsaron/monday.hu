@@ -49,13 +49,13 @@ a { color: inherit; text-decoration: none; }
   will-change: transform;
   backface-visibility: hidden;
 }
-.marquee__track span {
-  font-weight: 900; font-size: 40px; letter-spacing: 0;
-  padding: 6px 0; display: inline-block;
-}
-/* True inset stroke via SVG feMorphology — outlined letters share the exact
-   outer bounds of filled letters. See <SvgFilters />. */
-.marquee__track span:nth-child(even) {
+/* MONDAY wordmark logo (see <MondayLogo />). currentColor inherits the band's
+   paper color. overflow:visible so the glyph's tiny baseline overshoot isn't clipped. */
+.mlogo { display: block; width: auto; overflow: visible; }
+.marquee__track .mlogo { height: 32px; margin-block: 12px; margin-right: 14px; }
+/* True inset stroke via SVG feMorphology — outlined logos share the exact
+   outer bounds of filled logos. See <SvgFilters />. */
+.marquee__track .mlogo:nth-child(even) {
   filter: url(#inset-stroke);
 }
 @keyframes scroll { to { transform: translate3d(-50%, 0, 0); } }
@@ -77,36 +77,24 @@ a { color: inherit; text-decoration: none; }
   position: absolute; left: 0; top: 0; height: 100%;
   display: inline-flex; align-items: center; flex-shrink: 0;
   white-space: nowrap; animation: scroll 22s linear infinite;
-  transition: opacity .35s ease;
   will-change: transform;
   backface-visibility: hidden;
 }
-.tb-track span {
-  font-weight: 900; font-size: 40px; line-height: 1; letter-spacing: 0;
-  padding: 6px 0; display: inline-block;
-}
-.tb-track span:nth-child(even) {
+.tb-track .mlogo { height: 34px; margin-right: 16px; }
+.tb-track .mlogo:nth-child(even) {
   filter: url(#inset-stroke);
 }
-.topbar:hover .tb-track { opacity: 0; animation-play-state: paused; }
-
-.tb-anchor {
-  position: absolute; left: 20px; top: 0; height: 100%;
-  display: flex; align-items: center;
-  opacity: 0; transform: translateX(170px);
-  transition: transform .55s cubic-bezier(.7,0,.2,1), opacity .4s ease;
-  pointer-events: none;
-}
-.tb-logo {
-  display: block; height: 34px; width: auto;
-  overflow: visible;
-}
-.topbar:hover .tb-anchor { opacity: 1; transform: translateX(0); }
 
 /* ---------- hero / showreel ---------- */
 .hero {
   position: relative; height: 760px; overflow: hidden;
   border-bottom: 2px solid var(--line);
+}
+.hero__video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 1;
 }
 .reel { position: absolute; inset: 0; }
 .reel .frame {
@@ -134,7 +122,7 @@ a { color: inherit; text-decoration: none; }
 
 .ph {
   width: 100%; height: 100%; position: relative;
-  filter: grayscale(1) contrast(1.15);
+  filter: contrast(1.15);
   /* background-image kept for GifLoop (sets inline backgroundImage). Placeholder
      now uses next/image which renders an <img class="ph__img" />. */
   background-size: cover; background-position: center;
@@ -145,29 +133,10 @@ a { color: inherit; text-decoration: none; }
   object-fit: cover;
   object-position: center;
 }
-.ph::after {
-  content: ""; position: absolute; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
-  mix-blend-mode: overlay; opacity: .35;
-  pointer-events: none;
-}
-
 .hero__veil {
   position: absolute; inset: 0;
   background: linear-gradient(180deg, rgba(10,10,10,.15), rgba(10,10,10,.55));
   z-index: 2;
-}
-/* Grainient (reactbits) WebGL canvas overlay — animated film grain + subtle
-   warped gradient. Positioned over the hero photo via mix-blend-mode so the
-   image is preserved underneath. */
-.grainient-container {
-  position: relative; width: 100%; height: 100%; overflow: hidden;
-}
-.hero__grain {
-  position: absolute; inset: 0; z-index: 4;
-  pointer-events: none;
-  mix-blend-mode: overlay;
-  opacity: .55;
 }
 .hero__inner {
   position: relative; z-index: 3; height: 100%;
@@ -192,13 +161,47 @@ a { color: inherit; text-decoration: none; }
   font-family: var(--font-archivo); font-weight: 900; letter-spacing: -.04em;
   fill: var(--paper); text-transform: uppercase;
 }
+/* MONDAY-shaped backdrop-filter overlays (see <HeroLogoMask />).
+   The overlay must be a sibling of .hero__video / .hero__veil (NOT inside
+   .hero__inner) — .hero__inner is a stacking context, and `backdrop-filter`
+   can only see backdrops painted within its own stacking context.
+   z-index sits between the veil (2) and .hero__inner (3) so the wordmark
+   floats over the video but the foreground text in .hero__inner stays on top. */
+.hero__logo-mask {
+  position: absolute;
+  top: 50%;
+  left: 22px;
+  right: 22px;
+  transform: translateY(-50%);
+  z-index: 2;
+  aspect-ratio: 492 / 63;
+  pointer-events: none;
+  -webkit-mask-repeat: no-repeat;   mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;     mask-size: 100% 100%;
+  /* Translucent paper tint sits on top of the filtered backdrop so the
+     wordmark stays legible even when the video frame is near-black. */
+  background-color: rgba(244, 242, 236, 0.22);
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.22));
+}
+.hero__logo-mask--blur {
+  -webkit-backdrop-filter: blur(22px) saturate(1.4) brightness(1.25);
+          backdrop-filter: blur(22px) saturate(1.4) brightness(1.25);
+}
+.hero__logo-mask--invert {
+  -webkit-backdrop-filter: invert(1) hue-rotate(180deg) saturate(1.3);
+          backdrop-filter: invert(1) hue-rotate(180deg) saturate(1.3);
+}
+.hero__logo-mask--contrast {
+  -webkit-backdrop-filter: contrast(3) brightness(1.2) saturate(1.4);
+          backdrop-filter: contrast(3) brightness(1.2) saturate(1.4);
+}
 .ltr {
   transform-box: fill-box;
   transform-origin: 50% 100%;
   will-change: transform, opacity;
 }
 .hero__sub {
-  display: flex; justify-content: space-between; align-items: flex-end;
+  display: flex; justify-content: flex-end; align-items: flex-end;
   gap: 20px; flex-wrap: wrap;
 }
 .hero__sub p { max-width: 30ch; font-size: 18px; font-weight: 600; line-height: 1.25; }
@@ -215,11 +218,22 @@ a { color: inherit; text-decoration: none; }
   display: flex; align-items: flex-end; justify-content: space-between;
   padding: 26px 22px 14px; gap: 20px; flex-wrap: wrap;
 }
-.sec__id { font-family: var(--font-space-mono), ui-monospace, monospace; font-size: 13px; letter-spacing: .04em; }
-.sec__title { font-weight: 900; font-size: 150px; line-height: .8; letter-spacing: -.04em; text-transform: uppercase; }
+.sec__id { font-family: var(--font-space-mono), ui-monospace, monospace; font-size: 13px; letter-spacing: .04em; margin-bottom: 14px; }
+.sec__title { font-weight: 900; font-size: 150px; line-height: .8; letter-spacing: -.04em; text-transform: uppercase; margin-left: -6px; }
+/* Optical sizing: at ~half size the same -.04em tracking feels cramped on a heavy
+   face. Block layout lets us pull the line tight against the cap-line above. */
+.sec__title-sub {
+  display: block;
+  font-size: .5em;
+  letter-spacing: -.02em;
+  line-height: 1;
+  /* The parent's strut adds ~0.8em of empty line box above this line; pull
+     back so BEHIND tucks just under WHATS' baseline. */
+  margin-top: -.1em;
+}
 .sec__title .flipM { transition: transform .6s cubic-bezier(.7,0,.2,1); }
 .sec:hover .sec__title .flipM { transform: rotate(540deg); }
-.sec__note { max-width: 34ch; font-size: 14px; font-weight: 600; line-height: 1.3; text-align: right; white-space: pre-line; }
+.sec__note { max-width: 34ch; margin-left: auto; font-size: 16px; font-weight: 600; line-height: 1.35; text-align: right; white-space: pre-line; }
 
 /* ---------- WORK collage ---------- */
 .work {
@@ -231,7 +245,7 @@ a { color: inherit; text-decoration: none; }
   cursor: pointer; display: flex;
 }
 .tile .ph { transition: transform .6s cubic-bezier(.5,0,0,1), filter .4s; }
-.tile:hover .ph { transform: scale(1.06); filter: grayscale(1) contrast(1.25) brightness(.9); }
+.tile:hover .ph { transform: scale(1.06); filter: contrast(1.25) brightness(.9); }
 .tile__meta {
   position: absolute; inset: 0; z-index: 3;
   display: flex; flex-direction: column; justify-content: space-between;
@@ -380,11 +394,6 @@ a { color: inherit; text-decoration: none; }
   gap: 40px; align-items: end;
   padding: 30px 22px 40px;
 }
-.weare__lead {
-  font-weight: 900; font-size: 96px; line-height: .9;
-  letter-spacing: -.035em; text-transform: uppercase;
-  max-width: 12ch;
-}
 .weare__blurb {
   font-size: 19px; font-weight: 500; line-height: 1.4;
   letter-spacing: -.005em; max-width: 52ch;
@@ -396,14 +405,9 @@ a { color: inherit; text-decoration: none; }
 }
 .member { background: var(--paper); position: relative; }
 .member .pf { position: relative; min-height: 300px; overflow: hidden; }
-.member .pf .ph { filter: grayscale(1) contrast(1.1); animation: flick .9s steps(1) infinite; }
-.member:nth-child(2n) .pf .ph { animation-duration: 1.2s; }
-.member:nth-child(3n) .pf .ph { animation-duration: .7s; }
-@keyframes flick {
-  0% { filter: grayscale(1) contrast(1.1); }
-  33% { filter: grayscale(1) contrast(1.3) brightness(1.05); }
-  66% { filter: grayscale(1) contrast(.95) brightness(.92); }
-}
+/* Absolutely fill .pf so the photo renders regardless of how .pf's height
+   resolves (min-height alone won't satisfy .ph's height:100%). */
+.member .pf .ph { position: absolute; inset: 0; filter: grayscale(1) contrast(1.1); }
 .member__info { padding: 14px 16px 18px; border-top: 2px solid var(--line); }
 .member__name {
   font-weight: 900; font-size: 20px; letter-spacing: -.035em;
@@ -637,8 +641,8 @@ a { color: inherit; text-decoration: none; }
   .fm-overlay__foot { flex-direction: column; gap: 6px; font-size: 11px; text-align: center; }
   .fm-overlay__foot > * + *::before { content: none; margin: 0; }
 
-  /* Mobile m-top marquee uses 22px text → thinner inset stroke */
-  .m-top .marquee__track span:nth-child(even) { filter: url(#inset-stroke-thin); }
+  /* Mobile m-top marquee logo is smaller → thinner inset stroke */
+  .m-top .marquee__track .mlogo:nth-child(even) { filter: url(#inset-stroke-thin); }
 }
 
 /* ---------- FloatingMenu: landscape phone/tablet — split layout, compact nav ---------- */
@@ -749,7 +753,7 @@ a { color: inherit; text-decoration: none; }
     position: sticky; top: 0; z-index: 100;
   }
   .m-top .marquee__track { animation-duration: 15s; }
-  .m-top .marquee__track span { font-size: 22px; }
+  .m-top .marquee__track .mlogo { height: 18px; margin-block: 8px; margin-right: 10px; }
   .hero { height: 440px; }
   .hero__inner { padding: 18px 16px 20px; }
   .hero__title { margin-inline: 0; }
@@ -761,7 +765,7 @@ a { color: inherit; text-decoration: none; }
   .sec { scroll-margin-top: 34px; }
   .sec__head { flex-direction: column; align-items: flex-start; gap: 8px; padding: 20px 16px 12px; }
   .sec__title { font-size: 64px; }
-  .sec__note { text-align: left; max-width: none; font-size: 13px; }
+  .sec__note { text-align: left; max-width: none; font-size: 15px; }
 
   .work { grid-template-columns: 1fr; border-block: 2px solid var(--line); }
   .work .tile { grid-column: auto; }
@@ -780,13 +784,13 @@ a { color: inherit; text-decoration: none; }
   .werk .tile { min-height: 280px; }
   .werk__cta { flex-direction: column; align-items: flex-start; gap: 14px; padding: 20px 16px; }
   .werk__cta .yt { font-size: 30px; }
+
   .wins__strip { padding-block: 8px; }
   .wins__chip { font-size: 30px; gap: 10px; margin-right: 28px; }
   .wins__count { font-size: 18px; }
   .wins__fest { font-size: 11px; max-width: 9ch; line-height: 1.2; }
 
   .weare__intro { grid-template-columns: 1fr; gap: 18px; padding: 20px 16px 28px; align-items: start; }
-  .weare__lead { font-size: 48px; max-width: none; }
   .weare__blurb { font-size: 15px; max-width: none; padding-bottom: 0; }
   .team { grid-template-columns: 1fr 1fr; }
   .member .pf { min-height: 190px; }
@@ -857,5 +861,4 @@ a { color: inherit; text-decoration: none; }
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
-  .hero__grain { display: none; }
 }

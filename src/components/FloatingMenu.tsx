@@ -73,7 +73,6 @@ export function FloatingMenu() {
               <a href={`mailto:${site.contactEmail}`}>
                 {site.contactEmail.toUpperCase()}
               </a>
-              <span>{site.location}</span>
             </div>
           </div>
         </div>

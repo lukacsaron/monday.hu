@@ -17,14 +17,12 @@ export function WeAreSection() {
         </div>
       </div>
       <div className="weare__intro">
-        <p className="weare__lead">{weAreCopy.lead}</p>
         <p className="weare__blurb">{weAreCopy.blurb}</p>
       </div>
       <div className="team">
         {team.map((m, idx) => (
           <div className="member" key={m.id}>
             <div className="pf">
-              <span className="tag mono">GIF LOOP</span>
               <GifLoop images={m.images} fallback={FALLBACKS[idx % FALLBACKS.length]} />
             </div>
             <div className="member__info">

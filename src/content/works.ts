@@ -17,15 +17,14 @@ const yt = (id: string) => ({
 });
 
 export const works: Work[] = [
-  { id: 'pogany-egy-ketto',   art: 'POGÁNY INDULÓ',   tracks: 'EGY/KETTŐ',                                  span: 's7',  height: 'h-tall', code: 'MV·001', ...yt('SDHQwhNISck') },
-  { id: 'pogany-ketto-ketto', art: 'POGÁNY INDULÓ',   tracks: 'KETTŐ/KETTŐ',                                span: 's5',  height: 'h-tall', code: 'MV·002', ...yt('dRWjo7gUets') },
-  { id: 'pogany-lelkem',      art: 'POGÁNY INDULÓ',   tracks: 'LELKEM, NYUGODJ!',                           span: 's5',  height: 'h-mid',  code: 'MV·003', ...yt('xwXfPg_vEUo') },
-  { id: 'pogany-ugy-hiszem',  art: 'POGÁNY INDULÓ',   tracks: 'ÚGY HISZEM',                                 span: 's7',  height: 'h-mid',  code: 'MV·004', ...yt('1SbBcw84Pkw') },
-  { id: 'betonhofi',          art: 'BETON.HOFI',      tracks: 'BETON.HOF1',                                 span: 's7',  height: 'h-mid',  code: 'MV·005', ...yt('PIi0NCqnLjc') },
-  { id: 'dzsudlo',            art: 'DZSÚDLÓ',         tracks: 'SÖTÉT',                                      span: 's5',  height: 'h-mid',  code: 'MV·006', ...yt('2EHZKyo2teI') },
-  { id: 'anubiis',            art: 'ANUBII$',         tracks: 'EMELEM A TÉTET · w/ BETON.HOFI × CO LEE',    span: 's8',  height: 'h-mid',  code: 'MV·007', ...yt('oXDsYLXIcnI') },
+  { id: 'betonhofi',          art: 'BETON.HOFI',      tracks: 'BETON.HOF1',                                 span: 's7',  height: 'h-tall', code: 'MV·005', ...yt('PIi0NCqnLjc') },
+  { id: 'dzsudlo',            art: 'DZSÚDLÓ',         tracks: 'SÖTÉT',                                      span: 's5',  height: 'h-tall', code: 'MV·006', ...yt('2EHZKyo2teI') },
+  { id: 'anubiis',            art: 'ANUBII$',         tracks: 'EMELEM A TÉTET · w/ BETON.HOFI × CO LEE',    span: 's5',  height: 'h-mid',  code: 'MV·007', ...yt('oXDsYLXIcnI') },
+  { id: 'pogany-lelkem',      art: 'POGÁNY INDULÓ',   tracks: 'LELKEM, NYUGODJ!',                           span: 's7',  height: 'h-mid',  code: 'MV·003', ...yt('xwXfPg_vEUo') },
+  { id: 'pogany-ketto-ketto', art: 'POGÁNY INDULÓ',   tracks: 'KETTŐ/KETTŐ',                                span: 's7',  height: 'h-mid',  code: 'MV·002', ...yt('dRWjo7gUets') },
+  { id: 'pogany-egy-ketto',   art: 'POGÁNY INDULÓ',   tracks: 'EGY/KETTŐ',                                  span: 's5',  height: 'h-mid',  code: 'MV·001', ...yt('SDHQwhNISck') },
+  { id: 'pogany-ugy-hiszem',  art: 'POGÁNY INDULÓ',   tracks: 'ÚGY HISZEM',                                 span: 's8',  height: 'h-mid',  code: 'MV·004', ...yt('1SbBcw84Pkw') },
   { id: 'followtheflow',      art: 'FOLLOW THE FLOW', tracks: 'ÍGY VAGYOK SZABAD',                          span: 's4',  height: 'h-mid',  code: 'MV·008', ...yt('4SUujEG8OwY') },
-  { id: 'more',               art: '+ MORE WORK',     tracks: 'coming soon',                                span: 's12', height: 'h-sm',   code: '···',    image: '/img/07.png' },
 ];
 
 export const heroCuts: { label: string; image: string }[] = [
@@ -36,5 +35,3 @@ export const heroCuts: { label: string; image: string }[] = [
   { label: 'FOLLOW THE FLOW', image: '/img/works/4SUujEG8OwY.jpg' },
   { label: 'POGÁNY INDULÓ',   image: '/img/works/1SbBcw84Pkw.jpg' },
 ];
-
-export const reelStripImage = '/img/works/SDHQwhNISck.jpg';
