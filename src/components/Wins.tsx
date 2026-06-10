@@ -10,10 +10,16 @@ function partitionByCount(items: Win[]): { multi: Win[]; single: Win[] } {
 
 function Chip({ w }: { w: Win }) {
   const tierSuffix = w.tier ? ` · ${w.tier === 'gold' ? 'Gold' : 'Silver'}` : '';
+  const showCount = w.count > 1;
+  const srLabel = w.nominated ? 'Nominated:' : showCount ? `${w.count} wins:` : 'Won:';
   return (
     <li className="wins__chip" title={w.festivalFull ?? w.festival}>
-      <span className="wins__count mono" aria-hidden="true">{w.count}×</span>
-      <span className="sr-only">{w.count} wins:</span>
+      {w.nominated ? (
+        <span className="wins__count mono" aria-hidden="true">NOM</span>
+      ) : showCount ? (
+        <span className="wins__count mono" aria-hidden="true">{w.count}×</span>
+      ) : null}
+      <span className="sr-only">{srLabel}</span>
       <span className="wins__title">{w.title}{tierSuffix}</span>
       <span className="wins__fest mono">· {w.festival}{w.year ? ` · ${w.year}` : ''}</span>
       <span className="wins__dot" aria-hidden="true" />

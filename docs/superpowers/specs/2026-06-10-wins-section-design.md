@@ -265,7 +265,7 @@ The existing global `@media (prefers-reduced-motion: reduce)` rule already kills
 1. New `WINS` section appears between `Werk` and `WeAre`, labelled `03 / WINS`, with the `FlippedW` glyph in the title.
 2. The section note reads: "Some festivals were kind to us.\nMostly thanks to the artists we worked with." in the top-right `sec__note` slot.
 3. Two horizontal strips render below the head; top one paper, bottom one ink. Both scroll continuously in opposite directions, looping seamlessly.
-4. Strip 1 contains the five HMVF multi-wins; Strip 2 contains the Zsigmond + international one-offs.
+4. Strip 1 contains the four HMVF multi-wins (Best Music Video ×3, Best Director ×3, Best Cinematographer Gold ×2, Best Image Video ×2); Strip 2 contains the Zsigmond Vilmos cinematography win, the Europe Music Video Awards win, and the three Berlin Music Video Award entries (one win + two nominations).
 5. Each chip shows `count×`, the award title (with `· Gold` / `· Silver` suffix where applicable), and `· festival` annotation.
 6. Section title at 150px on desktop, 64px on mobile. Chip title 48px desktop / 30px mobile.
 7. Section IDs `04 / THE STUDIO` and `05 / CONTACT` are updated in `WeAre.tsx` and `Word.tsx` respectively.
