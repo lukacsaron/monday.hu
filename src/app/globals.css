@@ -337,6 +337,8 @@ a { color: inherit; text-decoration: none; }
   position: relative;
 }
 .wins__strip.inv { background: var(--ink); color: var(--paper); }
+.wins__desktop { display: block; }
+.wins__mobile { display: none; }
 /* Note: the page-wide `.page .sec { border-bottom }` rule closes the last
    strip. No per-strip bottom border or we'd get a doubled 4px line. */
 
@@ -785,6 +787,8 @@ a { color: inherit; text-decoration: none; }
   .werk__cta { flex-direction: column; align-items: flex-start; gap: 14px; padding: 20px 16px; }
   .werk__cta .yt { font-size: 30px; }
 
+  .wins__desktop { display: none; }
+  .wins__mobile { display: block; }
   .wins__strip { padding-block: 8px; }
   .wins__chip { font-size: 30px; gap: 10px; margin-right: 28px; }
   .wins__count { font-size: 18px; }

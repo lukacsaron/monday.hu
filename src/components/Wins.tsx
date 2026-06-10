@@ -1,10 +1,19 @@
 import { FlippedW } from './FlippedW';
 import { wins, winsCopy, type Win } from '@/content/wins';
 
-function partitionByCount(items: Win[]): { multi: Win[]; single: Win[] } {
+function partitionDesktop(items: Win[]) {
   return {
     multi: items.filter((w) => w.count >= 2),
     single: items.filter((w) => w.count === 1),
+  };
+}
+
+function partitionMobile(items: Win[]) {
+  return {
+    triple: items.filter((w) => w.count === 3),
+    double: items.filter((w) => w.count === 2),
+    singleWin: items.filter((w) => w.count === 1 && !w.nominated),
+    nominee: items.filter((w) => w.nominated === true),
   };
 }
 
@@ -47,7 +56,8 @@ function Strip({ items, inverted, reverse }: { items: Win[]; inverted?: boolean;
 }
 
 export function WinsSection() {
-  const { multi, single } = partitionByCount(wins);
+  const d = partitionDesktop(wins);
+  const m = partitionMobile(wins);
   return (
     <section className="sec wins" id="wins" aria-labelledby="wins-title">
       <div className="sec__head">
@@ -59,8 +69,16 @@ export function WinsSection() {
         </div>
         <p className="sec__note">{winsCopy.note}</p>
       </div>
-      <Strip items={multi} />
-      <Strip items={single} inverted reverse />
+      <div className="wins__desktop">
+        <Strip items={d.multi} />
+        <Strip items={d.single} inverted reverse />
+      </div>
+      <div className="wins__mobile" aria-hidden="true">
+        <Strip items={m.triple} />
+        <Strip items={m.double} inverted reverse />
+        <Strip items={m.singleWin} />
+        <Strip items={m.nominee} inverted reverse />
+      </div>
     </section>
   );
 }
