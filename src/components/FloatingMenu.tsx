@@ -70,8 +70,8 @@ export function FloatingMenu() {
             </nav>
 
             <div className="fm-overlay__foot mono">
-              <a href={`mailto:${site.contactEmail}`}>
-                {site.contactEmail.toUpperCase()}
+              <a href="#word" onClick={() => setOpen(false)}>
+                GET IN TOUCH ↘
               </a>
             </div>
           </div>

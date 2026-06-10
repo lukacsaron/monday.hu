@@ -82,7 +82,6 @@ const organizationSchema = {
   logo: `${SITE_URL}/brand/monday-mark.png`,
   image: `${SITE_URL}/opengraph-image.jpg`,
   description: DESCRIPTION,
-  email: 'hello@monday.hu',
   sameAs: [
     'https://www.instagram.com/monnndayyy/',
     'https://www.youtube.com/@mondayforcollective',

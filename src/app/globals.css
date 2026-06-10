@@ -138,18 +138,11 @@ a { color: inherit; text-decoration: none; }
 }
 .hero__inner {
   position: relative; z-index: 3; height: 100%;
-  display: flex; flex-direction: column; justify-content: space-between;
+  display: flex; flex-direction: column;
   padding: 30px 22px 26px; color: var(--paper);
 }
-.hero__top {
-  display: flex; justify-content: space-between; align-items: flex-start;
-  font-family: var(--font-space-mono), ui-monospace, monospace; font-size: 13px; letter-spacing: .02em;
-  mix-blend-mode: difference;
-}
-.hero__top .rec { display: flex; align-items: center; gap: 8px; }
-.hero__top .rec b { width: 9px; height: 9px; border-radius: 50%; background: #fff; animation: blink 1.1s steps(1) infinite; }
 @keyframes blink { 50% { opacity: 0; } }
-.hero__title { line-height: 1; }
+.hero__title { flex: 1; display: flex; align-items: center; justify-content: center; line-height: 1; }
 .bigword {
   display: block; width: 100%; height: auto;
   overflow: visible;
@@ -423,9 +416,47 @@ a { color: inherit; text-decoration: none; }
 
 /* ---------- WORD / contact ---------- */
 .word { background: var(--ink); color: var(--paper); padding: 48px 22px 30px; }
-.word__big { font-weight: 900; font-size: 200px; line-height: .8; letter-spacing: -.04em; text-transform: uppercase; }
-.word__big a { display: inline-block; }
-.word__big a:hover { -webkit-text-stroke: 2px var(--paper); color: transparent; }
+.word__big {
+  font-weight: 900; font-size: 200px; line-height: .8; letter-spacing: -.04em;
+  text-transform: uppercase; display: inline-block; transition: color .2s;
+}
+.word__big:hover { -webkit-text-stroke: 2px var(--paper); color: transparent; }
+
+.word__contacts {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;
+  width: fit-content; max-width: 100%;
+  margin-top: 22px;
+}
+.word__card {
+  border: 1.5px solid color-mix(in oklab, var(--paper) 40%, transparent);
+  padding: 14px 16px 12px;
+  display: flex; flex-direction: column; gap: 12px;
+  transition: border-color .2s, background .2s;
+}
+.word__card:hover { border-color: var(--paper); }
+.word__cardHead { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.word__cardName {
+  font-weight: 900; font-size: 22px; line-height: 1; letter-spacing: -.03em;
+  text-transform: uppercase;
+}
+.word__cardRole {
+  font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+  opacity: .6;
+}
+.word__cardLinks { list-style: none; display: flex; flex-direction: column; gap: 1px; }
+.word__cardLinks li { margin: 0; padding: 0; }
+.word__cardLinks a {
+  display: inline-flex; align-items: baseline; gap: 10px;
+  font-family: var(--font-space-mono), ui-monospace, monospace;
+  font-size: 12px; letter-spacing: .04em; text-transform: uppercase;
+  padding: 2px 0;
+  border-bottom: 1px solid transparent;
+  transition: border-color .15s, color .15s;
+}
+.word__cardLinks a:hover { border-bottom-color: var(--paper); }
+.word__cardLinkIcon { display: inline-block; width: 12px; opacity: .55; font-size: 11px; }
+.word__cardLinkLabel { white-space: nowrap; }
+
 .word__row {
   display: flex; justify-content: space-between; flex-wrap: wrap;
   gap: 24px; margin-top: 34px; border-top: 2px solid var(--paper); padding-top: 20px;
@@ -754,7 +785,6 @@ a { color: inherit; text-decoration: none; }
   .hero { height: 440px; }
   .hero__inner { padding: 18px 16px 20px; }
   .hero__title { margin-inline: 0; }
-  .hero__top { font-size: 11px; }
   .hero__sub { flex-direction: column; align-items: flex-start; gap: 10px; }
   .hero__sub p { max-width: none; font-size: 16px; }
   .hero__cap { text-align: left; }
@@ -791,13 +821,21 @@ a { color: inherit; text-decoration: none; }
 
   .weare__intro { grid-template-columns: 1fr; gap: 18px; padding: 20px 16px 28px; align-items: start; }
   .weare__blurb { font-size: 15px; max-width: none; padding-bottom: 0; }
-  .team { grid-template-columns: 1fr 1fr; }
+  /* minmax(0, 1fr) so long Hungarian names (e.g. "Kristóf M. Deák") don't blow
+     out the implicit min-content track and push the grid past viewport width. */
+  .team { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .member { min-width: 0; }
   .member .pf { min-height: 190px; }
-  .member__name { font-size: 18px; }
+  .member__name { font-size: 18px; white-space: normal; }
   .member__bio { font-size: 12px; }
 
   .word { padding: 32px 16px 24px; }
   .word__big { font-size: 84px; }
+  .word__contacts { grid-template-columns: 1fr; width: auto; gap: 10px; margin-top: 18px; }
+  .word__card { padding: 12px 14px 10px; gap: 10px; }
+  .word__cardLinkLabel { white-space: normal; word-break: break-all; }
+  .word__cardName { font-size: 20px; }
+  .word__cardLinks a { font-size: 11px; }
   .word__row { flex-direction: column; align-items: flex-start; gap: 18px; }
   .word__links { flex-direction: column; align-self: stretch; gap: 10px; }
   .word__links .btn { justify-content: center; min-height: 50px; font-size: 14px; }

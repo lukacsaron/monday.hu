@@ -20,13 +20,6 @@ export function Hero({ fx }: { fx?: HeroFx }) {
       <div className="hero__veil" />
       {fx ? <HeroLogoMask variant={fx} /> : null}
       <div className="hero__inner">
-        <div className="hero__top">
-          <div className="rec">
-            <b />
-            {' '}
-            {site.recLabel}
-          </div>
-        </div>
         <div className="hero__title">
           {fx ? null : <MondayReveal className="bigword" ariaLabel={site.brand} />}
         </div>
