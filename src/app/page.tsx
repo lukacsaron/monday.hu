@@ -4,6 +4,7 @@ import { SvgFilters } from '@/components/SvgFilters';
 import { Hero } from '@/components/Hero';
 import { WorkSection } from '@/components/Work';
 import { WerkSection } from '@/components/Werk';
+import { WinsSection } from '@/components/Wins';
 import { WeAreSection } from '@/components/WeAre';
 import { WordSection } from '@/components/Word';
 import { Marquee } from '@/components/Marquee';
@@ -19,6 +20,7 @@ export default function Page() {
       <Hero />
       <WorkSection />
       <WerkSection />
+      <WinsSection />
       <WeAreSection />
       <WordSection />
       <Marquee reverse />
