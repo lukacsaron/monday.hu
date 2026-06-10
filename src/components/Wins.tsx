@@ -13,7 +13,7 @@ function Chip({ w }: { w: Win }) {
   const showCount = w.count > 1;
   const srLabel = w.nominated ? 'Nominated:' : showCount ? `${w.count} wins:` : 'Won:';
   return (
-    <li className="wins__chip" title={w.festivalFull ?? w.festival}>
+    <li className="wins__chip" title={w.festival}>
       {w.nominated ? (
         <span className="wins__count mono" aria-hidden="true">NOM</span>
       ) : showCount ? (
@@ -21,8 +21,7 @@ function Chip({ w }: { w: Win }) {
       ) : null}
       <span className="sr-only">{srLabel}</span>
       <span className="wins__title">{w.title}{tierSuffix}</span>
-      <span className="wins__fest mono">· {w.festival}{w.year ? ` · ${w.year}` : ''}</span>
-      <span className="wins__dot" aria-hidden="true" />
+      <span className="wins__fest mono">{w.festival}{w.year ? ` · ${w.year}` : ''}</span>
     </li>
   );
 }
