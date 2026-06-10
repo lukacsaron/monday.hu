@@ -20,15 +20,13 @@ function partitionMobile(items: Win[]) {
 function Chip({ w }: { w: Win }) {
   const tierSuffix = w.tier ? ` · ${w.tier === 'gold' ? 'Gold' : 'Silver'}` : '';
   const showCount = w.count > 1;
-  const srLabel = w.nominated ? 'Nominated:' : showCount ? `${w.count} wins:` : 'Won:';
+  const srLabel = showCount ? `${w.count} wins:` : 'Won:';
   return (
     <li className="wins__chip" title={w.festival}>
-      {w.nominated ? (
-        <span className="wins__count mono" aria-hidden="true">NOM</span>
-      ) : showCount ? (
+      {showCount ? (
         <span className="wins__count mono" aria-hidden="true">{w.count}×</span>
       ) : null}
-      <span className="sr-only">{srLabel}</span>
+      {!w.nominated && <span className="sr-only">{srLabel}</span>}
       <span className="wins__title">{w.title}{tierSuffix}</span>
       <span className="wins__fest mono">{w.festival}{w.year ? ` ${w.year}` : ''}</span>
     </li>
