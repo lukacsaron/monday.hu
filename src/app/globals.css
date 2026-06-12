@@ -30,11 +30,6 @@ a { color: inherit; text-decoration: none; }
 /* ---------- page wrapper (replaces .bk.full) ---------- */
 .page { background: var(--paper); color: var(--ink); }
 .page .sec { border-bottom: 2px solid var(--line); }
-.foot {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 14px 22px; font-family: var(--font-space-mono), ui-monospace, monospace; font-size: 12px;
-  flex-wrap: wrap; gap: 10px; border-top: 2px solid var(--line);
-}
 
 /* ---------- marquee ---------- */
 .marquee {
@@ -839,8 +834,6 @@ a { color: inherit; text-decoration: none; }
   .word__links { flex-direction: column; align-self: stretch; gap: 10px; }
   .word__links .btn { justify-content: center; min-height: 50px; font-size: 14px; }
   .word__meta { text-align: left; }
-
-  .foot { flex-direction: column; align-items: flex-start; gap: 6px; font-size: 11px; padding: 14px 16px; }
 }
 
 /* ---------- 404 / not-found ---------- */

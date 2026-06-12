@@ -7,7 +7,6 @@ import { WinsSection } from '@/components/Wins';
 import { WeAreSection } from '@/components/WeAre';
 import { WordSection } from '@/components/Word';
 import { Marquee } from '@/components/Marquee';
-import { Foot } from '@/components/Foot';
 
 export default async function Page({
   searchParams,
@@ -28,7 +27,6 @@ export default async function Page({
       <WeAreSection />
       <WordSection />
       <Marquee reverse />
-      <Foot />
     </div>
   );
 }

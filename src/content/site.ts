@@ -9,8 +9,7 @@ export const site = {
     { label: '♫ TIKTOK', href: 'https://www.tiktok.com/@monday.monday.mon2' },
     { label: '▶ YOUTUBE', href: 'https://www.youtube.com/@mondayforcollective' },
   ],
-  footerMeta: ['MONDAY VISUAL HOUSE', '© 2026 — ALL RIGHTS LOOP'],
-  footStrip: ['MONDAY © 2026', 'MONDAY VISUAL HOUSE'],
+  footerMeta: ['HELLO@MONNNDAYYY.COM', '© 2026 — ALL RIGHTS LOOP'],
   youtubeUrl: 'https://www.youtube.com/@mondayforcollective',
   youtubeHandle: '@MONDAYFORCOLLECTIVE',
 } as const;
@@ -23,13 +22,13 @@ export const contacts: Contact[] = [
     name: 'Márton Répássy',
     role: 'Producer',
     links: [
-      { prefix: '✉', label: 'martonrepassy@gmail.com', href: 'mailto:martonrepassy@gmail.com' },
+      { prefix: '✉', label: 'marton@monnndayyy.com', href: 'mailto:marton@monnndayyy.com' },
       { prefix: '☎', label: '+36 30 472 9232', href: 'tel:+36304729232' },
       { prefix: '◎', label: '@martonrepassy', href: 'https://www.instagram.com/martonrepassy/' },
     ],
   },
   {
-    name: 'Büki Balázs',
+    name: 'Balázs Büki',
     role: 'Director',
     links: [
       { prefix: '✉', label: 'bukibalazsmate@gmail.com', href: 'mailto:bukibalazsmate@gmail.com' },
